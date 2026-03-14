@@ -23,23 +23,31 @@ export default function ContactForm() {
 
   try {
 
+    const formBody = new URLSearchParams({
+      name: formData.name,
+      email: formData.email,
+      message: formData.message
+    })
+
     await fetch(
       "https://script.google.com/macros/s/AKfycbxG1CqomKTofKBTugABBqlMoImimY8igzSVsbimNWSztGPk02QcxrAWIu5Ai7g-y90/exec",
       {
         method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData)
+        body: formBody
       }
     )
 
     alert("Message sent successfully!")
 
+    setFormData({
+      name: "",
+      email: "",
+      message: ""
+    })
+
   } catch (error) {
 
-    alert("Error sending message")
+    alert("Something went wrong. Please try again.")
 
   }
 
