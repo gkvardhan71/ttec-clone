@@ -4,114 +4,131 @@ import { useState } from "react"
 
 export default function ContactForm() {
 
-const [formData, setFormData] = useState({
-name:"",
-email:"",
-message:""
-})
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: ""
+  })
 
-function handleChange(e:any){
-setFormData({...formData,[e.target.name]:e.target.value})
-}
+  function handleChange(e: any) {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
 
-async function handleSubmit(e:any){
+  async function handleSubmit(e: any) {
+    e.preventDefault()
 
-e.preventDefault()
+    try {
 
-await fetch(
-"https://script.google.com/macros/s/AKfycbxG1CqomKTofKBTugABBqlMoImimY8igzSVsbimNWSztGPk02QcxrAWIu5Ai7g-y90/exec",
-{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body: JSON.stringify(formData)
-})
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbxG1CqomKTofKBTugABBqlMoImimY8igzSVsbimNWSztGPk02QcxrAWIu5Ai7g-y90/exec",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(formData)
+        }
+      )
 
-alert("Message sent successfully!")
+      alert("Message sent successfully!")
 
-}
+      setFormData({
+        name: "",
+        email: "",
+        message: ""
+      })
 
-}
+    } catch (error) {
 
-return(
+      alert("Something went wrong. Please try again.")
 
-<section className="py-24 bg-gray-50">
+    }
+  }
 
-<div className="max-w-2xl mx-auto bg-white p-10 rounded-xl shadow-lg">
+  return (
 
-<h2 className="text-3xl font-bold text-center text-gray-800">
-Contact Us
-</h2>
+    <section className="py-24 bg-gray-50">
 
-<p className="text-center text-gray-500 mt-2">
-Tell us about your project
-</p>
+      <div className="max-w-2xl mx-auto bg-white p-10 rounded-xl shadow-lg">
 
-<form
-onSubmit={handleSubmit}
-className="mt-8 space-y-5"
->
+        <h2 className="text-3xl font-bold text-center text-gray-800">
+          Contact Us
+        </h2>
 
-<div>
-<label className="text-sm font-medium text-gray-700">
-Name *
-</label>
+        <p className="text-center text-gray-500 mt-2">
+          Tell us about your project
+        </p>
 
-<input
-type="text"
-name="name"
-required
-value={formData.name}
-onChange={handleChange}
-/>
-</div>
+        <form
+          onSubmit={handleSubmit}
+          className="mt-8 space-y-5"
+        >
 
+          <div>
+            <label className="text-sm font-medium text-gray-700">
+              Name *
+            </label>
 
-<div>
-<label className="text-sm font-medium text-gray-700">
-Email *
-</label>
-
-<input
-type="text"
-name="name"
-required
-value={formData.name}
-onChange={handleChange}
-/>
-</div>
-
-
-<div>
-<label className="text-sm font-medium text-gray-700">
-Message
-</label>
-
-<textarea
-name="message"
-placeholder="Write a short message"
-className="w-full mt-2 border border-gray-300 p-3 rounded-lg h-24 focus:ring-2 focus:ring-blue-500 outline-none"
-onChange={handleChange}
-/>
-</div>
+            <input
+              type="text"
+              name="name"
+              required
+              value={formData.name}
+              placeholder="Enter your name"
+              onChange={handleChange}
+              className="w-full mt-2 border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+            />
+          </div>
 
 
-<button
-type="submit"
-className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition"
->
+          <div>
+            <label className="text-sm font-medium text-gray-700">
+              Email *
+            </label>
 
-Send Message
+            <input
+              type="email"
+              name="email"
+              required
+              value={formData.email}
+              placeholder="Enter your email"
+              onChange={handleChange}
+              className="w-full mt-2 border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+            />
+          </div>
 
-</button>
 
-</form>
+          <div>
+            <label className="text-sm font-medium text-gray-700">
+              Message
+            </label>
 
-</div>
+            <textarea
+              name="message"
+              value={formData.message}
+              placeholder="Write a short message"
+              onChange={handleChange}
+              className="w-full mt-2 border border-gray-300 p-3 rounded-lg h-24 focus:ring-2 focus:ring-blue-500 outline-none"
+            />
+          </div>
 
-</section>
 
-)
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition"
+          >
+            Send Message
+          </button>
+
+        </form>
+
+      </div>
+
+    </section>
+
+  )
 
 }
