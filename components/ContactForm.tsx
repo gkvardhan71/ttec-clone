@@ -24,6 +24,9 @@ const response = await fetch(
 "https://script.google.com/macros/s/AKfycbxG1CqomKTofKBTugABBqlMoImimY8igzSVsbimNWSztGPk02QcxrAWIu5Ai7g-y90/exec",
 {
 method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
 body: JSON.stringify(formData)
 }
 )
