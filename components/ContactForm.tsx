@@ -14,9 +14,34 @@ function handleChange(e:any){
 setFormData({...formData,[e.target.name]:e.target.value})
 }
 
-function handleSubmit(e:any){
+async function handleSubmit(e:any){
+
 e.preventDefault()
+
+try{
+
+const response = await fetch(
+"https://script.google.com/macros/s/AKfycbxG1CqomKTofKBTugABBqlMoImimY8igzSVsbimNWSztGPk02QcxrAWIu5Ai7g-y90/exec",
+{
+method:"POST",
+body: JSON.stringify(formData)
+}
+)
+
 alert("Message sent successfully!")
+
+setFormData({
+name:"",
+email:"",
+message:""
+})
+
+}catch(error){
+
+alert("Something went wrong. Please try again.")
+
+}
+
 }
 
 return(
@@ -47,8 +72,7 @@ Name *
 type="text"
 name="name"
 required
-placeholder="Enter your name"
-className="w-full mt-2 border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+value={formData.name}
 onChange={handleChange}
 />
 </div>
@@ -60,11 +84,10 @@ Email *
 </label>
 
 <input
-type="email"
-name="email"
+type="text"
+name="name"
 required
-placeholder="Enter your email"
-className="w-full mt-2 border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+value={formData.name}
 onChange={handleChange}
 />
 </div>
