@@ -17,37 +17,33 @@ export default function ContactForm() {
     })
   }
 
-  async function handleSubmit(e: any) {
-    e.preventDefault()
+  async function handleSubmit(e:any) {
 
-    try {
+  e.preventDefault()
 
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbxG1CqomKTofKBTugABBqlMoImimY8igzSVsbimNWSztGPk02QcxrAWIu5Ai7g-y90/exec",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(formData)
-        }
-      )
+  try {
 
-      alert("Message sent successfully!")
+    await fetch(
+      "https://script.google.com/macros/s/AKfycbxG1CqomKTofKBTugABBqlMoImimY8igzSVsbimNWSztGPk02QcxrAWIu5Ai7g-y90/exec",
+      {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      }
+    )
 
-      setFormData({
-        name: "",
-        email: "",
-        message: ""
-      })
+    alert("Message sent successfully!")
 
-    } catch (error) {
+  } catch (error) {
 
-      alert("Something went wrong. Please try again.")
+    alert("Error sending message")
 
-    }
   }
 
+}
   return (
 
     <section className="py-24 bg-gray-50">
