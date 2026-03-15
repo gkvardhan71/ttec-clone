@@ -17,44 +17,37 @@ setFormData({
 })
 }
 
-async function handleSubmit(e:any){
+async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 
+  e.preventDefault()
 
-e.preventDefault()
+  try {
+    const formBody = new URLSearchParams({
+      name: formData.name,
+      phone: formData.phone,
+      message: formData.message
+    })
 
-try {
+    const response = await fetch(
+      "https://script.google.com/macros/s/AKfycbxG1CqomKTofKBTugABBqlMoImimY8igzSVsbimNWSztGPk02QcxrAWIu5Ai7g-y90/exec",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: formBody
+      }
+    )
 
-  const formBody = new URLSearchParams()
-
-  formBody.append("name", formData.name)
-  formBody.append("phone", formData.phone)
-  formBody.append("message", formData.message)
-
-  await fetch(
-    "https://script.google.com/macros/s/AKfycbxG1CqomKTofKBTugABBqlMoImimY8igzSVsbimNWSztGPk02QcxrAWIu5Ai7g-y90/exec",
-    {
-      method: "POST",
-      headers:{
-        "Content-Type":"application/x-www-form-urlencoded"
-      },
-      body: formBody.toString()
+    if (response.ok) {
+      alert("Message sent successfully!")
+      setFormData({ name: "", phone: "", message: "" })
+    } else {
+      alert("Something went wrong. Please try again.")
     }
-  )
-
-  alert("Message sent successfully!")
-
-  setFormData({
-    name:"",
-    phone:"",
-    message:""
-  })
-
-} catch (error) {
-
-  alert("Something went wrong. Please try again.")
-
-}
-
+  } catch (error) {
+    alert("Something went wrong. Please try again.")
+  }
 
 }
 
