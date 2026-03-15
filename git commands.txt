@@ -1,0 +1,7 @@
+git commands:
+
+git --version
+cd C:\Users\ADMIN\ttec-clone
+git init
+git commit -m"added phone number"
+gir push
