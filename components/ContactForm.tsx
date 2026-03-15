@@ -10,7 +10,7 @@ phone: "",
 message: ""
 })
 
-function handleChange(e:any){
+function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 setFormData({
 ...formData,
 [e.target.name]: e.target.value
@@ -23,21 +23,17 @@ e.preventDefault()
 
 try {
 
-const formBody = new URLSearchParams()
-
-formBody.append("name", formData.name)
-formBody.append("phone", formData.phone)
-formBody.append("message", formData.message)
+const formBody = new URLSearchParams({
+name: formData.name,
+phone: formData.phone,
+message: formData.message
+})
 
 await fetch(
 "https://script.google.com/macros/s/AKfycbxG1CqomKTofKBTugABBqlMoImimY8igzSVsbimNWSztGPk02QcxrAWIu5Ai7g-y90/exec",
 {
 method: "POST",
-mode: "no-cors",
-headers: {
-"Content-Type": "application/x-www-form-urlencoded"
-},
-body: formBody.toString()
+body: formBody
 }
 )
 
@@ -51,6 +47,7 @@ message: ""
 
 } catch (error) {
 
+console.error(error)
 alert("Something went wrong. Please try again.")
 
 }
@@ -77,6 +74,7 @@ className="mt-8 space-y-5"
 >
 
 <div>
+
 <label className="text-sm font-medium text-gray-700">
 Name *
 </label>
@@ -94,6 +92,7 @@ className="w-full mt-2 border border-gray-300 p-3 rounded-lg focus:ring-2 focus:
 </div>
 
 <div>
+
 <label className="text-sm font-medium text-gray-700">
 Phone Number *
 </label>
@@ -111,6 +110,7 @@ className="w-full mt-2 border border-gray-300 p-3 rounded-lg focus:ring-2 focus:
 </div>
 
 <div>
+
 <label className="text-sm font-medium text-gray-700">
 Message
 </label>
@@ -122,13 +122,16 @@ placeholder="Write a short message"
 onChange={handleChange}
 className="w-full mt-2 border border-gray-300 p-3 rounded-lg h-24 focus:ring-2 focus:ring-blue-500 outline-none"
 />
+
 </div>
 
 <button
 type="submit"
 className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition"
 >
+
 Send Message
+
 </button>
 
 </form>
