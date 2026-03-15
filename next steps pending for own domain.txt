@@ -1,0 +1,170 @@
+2️⃣ Add Your Own Domain
+
+Your current domain:
+
+ttec-clonegk.vercel.app
+
+Professional domain example:
+
+gksolutions.com
+Buy domain from:
+
+GoDaddy
+
+Namecheap
+
+Google Domains
+
+Typical cost:
+
+$8 – $12 per year
+Connect Domain in Vercel
+
+Open your project in
+Vercel.
+
+Go to:
+
+Project → Settings → Domains
+
+Add:
+
+gksolutions.com
+
+Vercel will show DNS settings to configure.
+
+3️⃣ Add SEO (Important for Google Search)
+
+Open:
+
+app/layout.tsx
+
+Add metadata:
+
+export const metadata = {
+  title: "GK Solutions - AI & Analytics Consulting",
+  description:
+    "We help enterprises transform customer experience using AI, analytics and CRM solutions.",
+}
+Add Open Graph Preview
+openGraph:{
+title:"GK Solutions",
+description:"AI & Data Consulting",
+images:["/images/ai.jpg"]
+}
+
+Now when someone shares your website link on:
+
+LinkedIn
+
+WhatsApp
+
+Twitter
+
+It shows preview image + title.
+
+4️⃣ Add Blog / Insights
+
+You already created:
+
+app/blog/page.tsx
+
+Now you can create blog posts like:
+
+app/blog/ai-customer-experience/page.tsx
+app/blog/data-analytics-trends/page.tsx
+app/blog/future-crm-platforms/page.tsx
+
+Example article structure:
+
+Title
+Author
+Date
+Content
+
+This improves SEO and credibility.
+
+5️⃣ Add Website Analytics
+Install
+
+Google Analytics
+
+Go to:
+
+https://analytics.google.com
+
+Create property → Get tracking ID.
+
+Then install:
+
+npm install @vercel/analytics
+
+Add in layout.tsx.
+
+Now you can track:
+
+Visitors
+Countries
+Traffic source
+Page views
+Add Behavior Tracking
+
+Use
+Microsoft Clarity
+
+Clarity shows:
+
+User clicks
+Scroll behavior
+Session recordings
+
+Very powerful for improving UX.
+
+6️⃣ UI Improvements (Quick Wins)
+Increase Logo Size
+
+Inside Navbar.tsx:
+
+text-xl → text-2xl
+Add Navbar Padding
+px-10 py-5
+Add Footer Social Icons
+
+Install icons:
+
+npm install react-icons
+
+Example:
+
+import { FaLinkedin, FaTwitter } from "react-icons/fa"
+Hero Text Animation
+
+Add Framer Motion animation:
+
+initial={{opacity:0,y:50}}
+animate={{opacity:1,y:0}}
+What You Built Is Already Impressive
+
+Your website now has a modern tech stack:
+
+Next.js
+Tailwind CSS
+Framer Motion
+Swiper
+Vercel Hosting
+GitHub Version Control
+
+This is exactly the stack many startups use.
+
+🚀 Next Level (If You Want)
+
+Now we can turn your site into a real consulting business website by adding:
+
+• Client inquiry CRM
+• WhatsApp contact button
+• Admin dashboard for leads
+• Email notifications for form submissions
+
+This makes your site fully production-ready.
+
+If you want, I can also show you how to add a floating WhatsApp contact button like most consulting websites.

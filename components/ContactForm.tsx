@@ -6,7 +6,7 @@ export default function ContactForm() {
 
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
+    phone: "",
     message: ""
   })
 
@@ -19,39 +19,40 @@ export default function ContactForm() {
 
   async function handleSubmit(e:any) {
 
-  e.preventDefault()
+    e.preventDefault()
 
-  try {
+    try {
 
-    const formBody = new URLSearchParams({
-      name: formData.name,
-      email: formData.email,
-      message: formData.message
-    })
+      const formBody = new URLSearchParams({
+        name: formData.name,
+        phone: formData.phone,
+        message: formData.message
+      })
 
-    await fetch(
-      "https://script.google.com/macros/s/AKfycbxG1CqomKTofKBTugABBqlMoImimY8igzSVsbimNWSztGPk02QcxrAWIu5Ai7g-y90/exec",
-      {
-        method: "POST",
-        body: formBody
-      }
-    )
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbxG1CqomKTofKBTugABBqlMoImimY8igzSVsbimNWSztGPk02QcxrAWIu5Ai7g-y90/exec",
+        {
+          method: "POST",
+          body: formBody
+        }
+      )
 
-    alert("Message sent successfully!")
+      alert("Message sent successfully!")
 
-    setFormData({
-      name: "",
-      email: "",
-      message: ""
-    })
+      setFormData({
+        name: "",
+        phone: "",
+        message: ""
+      })
 
-  } catch (error) {
+    } catch (error) {
 
-    alert("Something went wrong. Please try again.")
+      alert("Something went wrong. Please try again.")
+
+    }
 
   }
 
-}
   return (
 
     <section className="py-24 bg-gray-50">
@@ -87,23 +88,21 @@ export default function ContactForm() {
             />
           </div>
 
-
           <div>
             <label className="text-sm font-medium text-gray-700">
-              Email *
+              Phone Number *
             </label>
 
             <input
-              type="email"
-              name="email"
+              type="tel"
+              name="phone"
               required
-              value={formData.email}
-              placeholder="Enter your email"
+              value={formData.phone}
+              placeholder="Enter your phone number"
               onChange={handleChange}
               className="w-full mt-2 border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
             />
           </div>
-
 
           <div>
             <label className="text-sm font-medium text-gray-700">
@@ -118,7 +117,6 @@ export default function ContactForm() {
               className="w-full mt-2 border border-gray-300 p-3 rounded-lg h-24 focus:ring-2 focus:ring-blue-500 outline-none"
             />
           </div>
-
 
           <button
             type="submit"
